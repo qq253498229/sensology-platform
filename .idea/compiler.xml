@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="commons" />
+        <module name="config-server" />
+        <module name="eureka-client" />
+        <module name="eureka-client1" />
+        <module name="eureka-server" />
+        <module name="manager-server" />
+        <module name="zuul-server" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="commons" target="1.8" />
+      <module name="config-server" target="1.8" />
+      <module name="eureka-client" target="1.8" />
+      <module name="eureka-client1" target="1.8" />
+      <module name="eureka-server" target="1.8" />
+      <module name="manager-server" target="1.8" />
+      <module name="sensology-platform" target="1.8" />
+      <module name="zuul-server" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="eureka-client" options="" />
+      <module name="eureka-client1" options="" />
+      <module name="manager-server" options="" />
+      <module name="zuul-server" options="" />
+    </option>
+  </component>
+</project>

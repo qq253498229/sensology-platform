@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: manager-server
+  boot:
+    admin:
+      #routes:
+      #  endpoints: env,metrics,dump,jolokia,info,configprops,trace,logfile,refresh,flyway,liquibase,heapdump,loggers,auditevents,hystrix.stream,activiti
+      turbine:
+        clusters: default
+        location: service-turbine
+server:
+  port: 5000
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    metadata-map:
+      user.name: sensology
+      user.password: 123456
+management:
+  security:
+    enabled: false
+security:
+  user:
+    name: sensology
+    password: 123456
+  basic:
+    enabled: false
+
+
