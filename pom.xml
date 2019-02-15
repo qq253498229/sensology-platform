@@ -18,7 +18,11 @@
         <module>commons</module>
         <module>eureka-server</module>
         <module>eureka-client</module>
+        <module>eureka-client1</module>
         <module>config-server</module>
+        <module>turbine-server</module>
+        <module>manager-server</module>
+        <module>zuul-server</module>
     </modules>
 
     <properties>
@@ -35,7 +39,7 @@
         <springboot-web.verison>1.5.9.RELEASE</springboot-web.verison>
         <security.version>1.5.9.RELEASE</security.version>
         <hystrix.version>1.4.2.RELEASE</hystrix.version>
-        <turbine.version>1.2.5.RELEASE</turbine.version>
+        <turbine.version>1.4.2.RELEASE</turbine.version>
     </properties>
 
     <dependencies>
