@@ -3,11 +3,11 @@ spring:
     name: manager-server
   boot:
     admin:
-      #routes:
-      #  endpoints: env,metrics,dump,jolokia,info,configprops,trace,logfile,refresh,flyway,liquibase,heapdump,loggers,auditevents,hystrix.stream,activiti
+      routes:
+        endpoints: env,metrics,dump,jolokia,info,configprops,trace,logfile,refresh,flyway,liquibase,heapdump,loggers,auditevents,hystrix.stream,activiti
       turbine:
         clusters: default
-        location: service-turbine
+        location: turbine-server
 server:
   port: 5000
 eureka:
