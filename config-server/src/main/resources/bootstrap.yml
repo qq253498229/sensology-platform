@@ -10,5 +10,9 @@ spring:
           uri: ${GIT_URL:https://github.com/ouyangCL/config.git}
           search-paths: dev*
           strict-host-key-checking: false
+          label: master
 server:
   port: 18888
+management:
+  security:
+    enabled: false

@@ -1,18 +1,17 @@
-package com.config.configserver;
+package com.zipkin;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.config.server.EnableConfigServer;
+import zipkin.server.EnableZipkinServer;
 
-@EnableConfigServer
 @SpringBootApplication
 @EnableDiscoveryClient
-public class ConfigServerApplication {
+@EnableZipkinServer
+public class ZipkinServerApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ConfigServerApplication.class, args);
+        SpringApplication.run(ZipkinServerApplication.class, args);
     }
 
 }
-

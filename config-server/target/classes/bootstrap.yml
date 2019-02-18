@@ -12,3 +12,6 @@ spring:
           strict-host-key-checking: false
 server:
   port: 18888
+management:
+  security:
+    enabled: false

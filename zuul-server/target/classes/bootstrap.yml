@@ -7,6 +7,12 @@ server:
 spring:
   application:
     name: zuul-server
+  zipkin:
+    base-url: http://tracing-analysis-dc-sh.aliyuncs.com/adapt_a4n1q8p8qw@3cd8b46f44be7ff_a4n1q8p8qw@53df7ad2afe8301/api/v2/spans
+    #base-url: http://localhost:9411
+  sleuth:
+    sampler:
+      percentage: 1.0
 zuul:
   routes:
     api-a:

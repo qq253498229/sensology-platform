@@ -15,40 +15,16 @@
 
     <!-- 开发环境 -->
     <springProfile name="dev">
-        <!--<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
-            &lt;!&ndash; 文件路径 &ndash;&gt;
-            <file>${LOG_HOME}/web-server.log</file>
+        <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
             <encoder>
                 <pattern>${LOG_FORMAT_PATTERN}</pattern>
             </encoder>
         </appender>
 
-        <logger name="com.client.eurekaclient.*" level="debug" />
+        <logger name="*" level="debug" />
 
         <root level="${DEV_LOG_LEVEL}">
             <appender-ref ref="CONSOLE" />
-        </root>-->
-        <appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
-            <!-- 文件路径 -->
-            <file>${LOG_HOME}/web-server.log</file>
-            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-                <!-- rollover daily -->
-                <fileNamePattern>${LOG_HOME}/web-server_%d{yyyy-MM-dd}.%i.log
-                </fileNamePattern>
-                <!-- each file should be at most {maxFileSize}, keep {maxHistory} days worth of history, but at most {totalSizeCap} -->
-                <maxFileSize>10MB</maxFileSize>
-                <maxHistory>60</maxHistory>
-                <totalSizeCap>10000MB</totalSizeCap>
-            </rollingPolicy>
-            <!-- <layout class="ch.qos.logback.classic.PatternLayout"> <pattern>${LOG_FORMAT_PATTERN}</pattern>
-                </layout> -->
-            <encoder>
-                <pattern>${LOG_FORMAT_PATTERN}</pattern>
-            </encoder>
-        </appender>
-
-        <root level="${TEST_LOG_LEVEL}">
-            <appender-ref ref="ROLLING" />
         </root>
     </springProfile>
     <springProfile name="test">
@@ -84,8 +60,6 @@
             <!-- 可选项 设置 time 字段呈现的时区 -->
             <timeZone>UTC</timeZone>
         </appender>
-
-        <logger name="com.client.eurekaclient.*" level="debug" />
 
         <!-- 可用来获取StatusManager中的状态 -->
         <statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener"/>

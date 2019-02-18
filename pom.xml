@@ -24,6 +24,7 @@
         <module>turbine-server</module>
         <module>manager-server</module>
         <module>zuul-server</module>
+        <module>zipkin-server</module>
     </modules>
 
     <properties>
