@@ -3,7 +3,7 @@ spring:
     name: eureka-client
   cloud:
     config:
-      name: application
+      name: client
       profile: dev
       uri: http://localhost:18888/
 server:

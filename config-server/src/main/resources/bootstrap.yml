@@ -1,7 +1,14 @@
 spring:
   application:
     name: config-server
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
+  cloud:
+    config:
+      server:
+        git:
+          username: ${GIT_USERNAME:1165561211@qq.com}
+          password: ${GIT_PASSWORD:112627826c}
+          uri: ${GIT_URL:https://github.com/ouyangCL/config.git}
+          search-paths: dev*
+          strict-host-key-checking: false
+server:
+  port: 18888

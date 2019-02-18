@@ -1,4 +1,4 @@
-package com.client.eurekaclient1.controller;
+package com.eurekaclient2.controller;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class TestController {
     @RequestMapping("/test-feign")
     public String testFeign(String from){
-        return "client1 from Feign "+ from;
+        return "client2: from Feign "+ from;
     }
 
     @PostMapping("/test-upload")
