@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径     使用spring-boot的配置项LOG_PATH-->
+    <property name="LOG_HOME" value="./logs"/>
+    <!--<property name="LOG_HOME" value="/var/log/apeye"/>-->
+
+    <property name="DEV_LOG_LEVEL" value="INFO" />
+    <property name="TEST_LOG_LEVEL" value="INFO" />
+    <property name="PROD_LOG_LEVEL" value="INFO" />
+    <!-- 文件输出格式 -->
+    <property name="LOG_FORMAT_PATTERN" value="%-12(%d{yyyy-MM-dd HH:mm:ss.SSS}) |-%-5level [%thread] %c [%L] -| %msg%n" />
+
+    <!--为了防止进程退出时，内存中的数据丢失，请加上此选项-->
+    <shutdownHook class="ch.qos.logback.core.hook.DelayingShutdownHook"/>
+
+    <!-- 开发环境 -->
+    <springProfile name="dev">
+        <!--<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+            &lt;!&ndash; 文件路径 &ndash;&gt;
+            <file>${LOG_HOME}/web-server.log</file>
+            <encoder>
+                <pattern>${LOG_FORMAT_PATTERN}</pattern>
+            </encoder>
+        </appender>
+
+        <logger name="com.client.eurekaclient.*" level="debug" />
+
+        <root level="${DEV_LOG_LEVEL}">
+            <appender-ref ref="CONSOLE" />
+        </root>-->
+        <appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <!-- 文件路径 -->
+            <file>${LOG_HOME}/web-server.log</file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <!-- rollover daily -->
+                <fileNamePattern>${LOG_HOME}/web-server_%d{yyyy-MM-dd}.%i.log
+                </fileNamePattern>
+                <!-- each file should be at most {maxFileSize}, keep {maxHistory} days worth of history, but at most {totalSizeCap} -->
+                <maxFileSize>10MB</maxFileSize>
+                <maxHistory>60</maxHistory>
+                <totalSizeCap>10000MB</totalSizeCap>
+            </rollingPolicy>
+            <!-- <layout class="ch.qos.logback.classic.PatternLayout"> <pattern>${LOG_FORMAT_PATTERN}</pattern>
+                </layout> -->
+            <encoder>
+                <pattern>${LOG_FORMAT_PATTERN}</pattern>
+            </encoder>
+        </appender>
+
+        <root level="${TEST_LOG_LEVEL}">
+            <appender-ref ref="ROLLING" />
+        </root>
+    </springProfile>
+    <springProfile name="test">
+        <appender name="loghubAppender1" class="com.aliyun.openservices.log.logback.LoghubAppender">
+            <!--必选项-->
+            <!-- 账号及网络配置 -->
+            <endpoint>cn-shanghai.log.aliyuncs.com</endpoint>
+            <accessKeyId>LTAIOZsWHwh2fxXq</accessKeyId>
+            <accessKey>CrCOTqXv1dngFC3LeTP7xkISd10nAu</accessKey>
+
+            <!-- sls 项目配置 -->
+            <projectName>sensology-test</projectName>
+            <logstore>sensology-store-test</logstore>
+            <!--必选项 (end)-->
+
+            <!-- 可选项 -->
+            <!--<topic>your topic</topic>
+            <source>your source</source>-->
+
+            <!-- 可选项 详见 '参数说明'-->
+            <packageTimeoutInMS>3000</packageTimeoutInMS>
+            <logsCountPerPackage>4096</logsCountPerPackage>
+            <logsBytesPerPackage>3145728</logsBytesPerPackage>
+            <memPoolSizeInByte>104857600</memPoolSizeInByte>
+            <retryTimes>3</retryTimes>
+            <maxIOThreadSizeInPool>8</maxIOThreadSizeInPool>
+
+            <!-- 可选项 通过配置 encoder 的 pattern 自定义 log 的格式 -->
+            <encoder>
+                <pattern>${LOG_FORMAT_PATTERN}</pattern>
+            </encoder>
+
+            <!-- 可选项 设置 time 字段呈现的时区 -->
+            <timeZone>UTC</timeZone>
+        </appender>
+
+        <logger name="com.client.eurekaclient.*" level="debug" />
+
+        <!-- 可用来获取StatusManager中的状态 -->
+        <statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener"/>
+
+        <root>
+            <level value="INFO"/>
+            <appender-ref ref="loghubAppender1"/>
+        </root>
+    </springProfile>
+    <springProfile name="prod">
+        <appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <!-- 文件路径 -->
+            <file>${LOG_HOME}/web-server.log</file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <!-- rollover daily -->
+                <fileNamePattern>${LOG_HOME}/web-server_%d{yyyy-MM-dd}.%i.log
+                </fileNamePattern>
+                <!-- each file should be at most {maxFileSize}, keep {maxHistory} days worth of history, but at most {totalSizeCap} -->
+                <maxFileSize>10MB</maxFileSize>
+                <maxHistory>60</maxHistory>
+                <totalSizeCap>10000MB</totalSizeCap>
+            </rollingPolicy>
+            <!-- <layout class="ch.qos.logback.classic.PatternLayout"> <pattern>${LOG_FORMAT_PATTERN}</pattern>
+                </layout> -->
+            <encoder>
+                <pattern>${LOG_FORMAT_PATTERN}</pattern>
+            </encoder>
+        </appender>
+
+        <logger name="org.springframework" level="INFO"/>
+        <logger name="org.springframework.transaction" level="DEBUG"/>
+        <logger name="com.qdyx" level="DEBUG"/>
+        <logger name="java.sql.Connection" level="INFO"/>
+        <logger name="java.sql.Statement" level="INFO"/>
+        <logger name="java.sql.PreparedStatement" level="INFO"/>
+
+        <root level="${PROD_LOG_LEVEL}">
+            <appender-ref ref="ROLLING" />
+        </root>
+    </springProfile>
+</configuration>

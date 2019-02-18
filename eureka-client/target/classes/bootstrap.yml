@@ -6,6 +6,8 @@ spring:
       name: client
       profile: dev
       uri: http://localhost:18888/
+  profiles:
+    active: test
 server:
   port: 7074
 eureka:
