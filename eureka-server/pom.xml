@@ -4,6 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>eureka-server</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <parent>
@@ -11,7 +12,6 @@
         <groupId>com.sensology</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-
 
     <dependencies>
         <dependency>
@@ -32,7 +32,7 @@
                 <artifactId>docker-maven-plugin</artifactId>
                 <configuration>
                     <imageName>${docker-image.prefix}/${project.artifactId}</imageName>
-                    <dockerDirectory>${project.basedir}/target/docker</dockerDirectory>
+                    <dockerDirectory>src/main/docker</dockerDirectory>
                     <resources>
                         <resource>
                             <targetPath>/</targetPath>

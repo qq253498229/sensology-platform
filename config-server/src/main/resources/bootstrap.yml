@@ -11,14 +11,28 @@ spring:
           search-paths: dev*
           strict-host-key-checking: false
           label: master
+  profiles:
+    active: '@profiles.active@'
 server:
   port: 18888
 management:
   security:
     enabled: false
+---
+spring:
+  profiles: dev
 eureka:
   instance:
       prefer-ip-address: true
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
+---
+spring:
+  profiles: test
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://192.168.99.100:8761/eureka/
