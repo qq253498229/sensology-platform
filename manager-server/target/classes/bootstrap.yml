@@ -18,6 +18,7 @@ eureka:
     metadata-map:
       user.name: sensology
       user.password: 123456
+    prefer-ip-address: true
 management:
   security:
     enabled: false
