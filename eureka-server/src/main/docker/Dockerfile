@@ -1,4 +1,4 @@
-FROM java:8
+FROM fabric8/java-alpine-openjdk8-jre
 VOLUME /tmp
 ADD eureka-server-0.0.1-SNAPSHOT.jar eureka-server.jar
 RUN sh -c 'touch /eureka-server.jar'

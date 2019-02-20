@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Getter
 @Setter
 @Component
-@RefreshScope
+//@RefreshScope
 public class ConfigProperties {
     @Value("${from}")
     private String from;
