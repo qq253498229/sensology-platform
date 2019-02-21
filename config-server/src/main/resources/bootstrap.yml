@@ -20,13 +20,22 @@ management:
     enabled: false
 ---
 spring:
-  profiles: dev
+  profiles: default
 eureka:
   instance:
       prefer-ip-address: true
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
+---
+spring:
+  profiles: dev
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://eureka:8761/eureka/
 ---
 spring:
   profiles: test

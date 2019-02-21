@@ -1,0 +1,12 @@
+version: "3"
+services:
+  eureka:
+    image: local-eureka:latest
+    build: ./eureka-server
+    ports:
+      - "8761:8761"
+  config:
+    image: local-config:latest
+    build: ./config-server
+    ports:
+      - "18888:18888"
